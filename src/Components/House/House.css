@@ -1,0 +1,9 @@
+.house-cards {
+    box-sizing: border-box;
+    margin: auto;
+    padding: 0;
+    width: 70vw;
+    height: 200px;
+    background: gray;
+  }
+  

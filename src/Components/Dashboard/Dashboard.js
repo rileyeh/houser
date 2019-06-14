@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import House from '../House/House'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import store from '../../ducks/reducer'
+import './Dashboard.css'
 
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props)
+
+        let reduxStore = store.getState()
 
         this.state = {
             houses: []
@@ -28,33 +32,44 @@ export default class Dashboard extends Component {
                 houses: res.data
             })
         })
+
+        // store.subscribe(() => {
+        //     const reduxStore = store.getState()
+    
+        //     this.setState({
+        //       recipes: reduxStore.recipes
+        //     })
+    
+        // })
+
     }
 
-    deleteHouse = id => {
-        axios.delete(`/houses/${id}`).then(res => {
-            console.log(5555, res)
-        }).catch(err => console.log(err))
-    }
-    
+ 
 
     render() {
-        let mappedHouses = this.state.houses.map((house, index) => {
+        let mappedHouses = this.state.houses.map(house => {
             return (
                 <House key={house.id}
-                    id={house.id}
+                    index={house.id}
                     name={house.name}
                     address={house.address}
                     city={house.city}
                     state={house.state}
                     zip={house.zip}
-                    deletHouse={this.deleteHouse} />
+                    deleteHouse={this.deleteHouse} />
             )
         })
         return(
-            <div>
-                <h1>Dashboard</h1>
-                <Link to='/wizard'><button>Add New Property</button></Link>
-                {mappedHouses}
+            <div className='dashboard'>
+                <div className='title-and-btn'>
+                    <h1>Dashboard</h1>
+                    <Link to='/wizard'><button>Add New Property</button></Link>
+                </div>
+
+                <div className='houses'>
+                    <p>Home Listings</p>
+                    {mappedHouses}
+                </div>
             </div>
         )
     }

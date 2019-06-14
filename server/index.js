@@ -17,6 +17,6 @@ app.use(express.json())
 
 app.get('/houses', ctrl.readHouses)
 app.post('/addhouse', ctrl.addHouse)
-app.delete('/houses/:id', ctrl.deleteHouse)
+app.delete('/delete', ctrl.deleteHouse)
 
 app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`))

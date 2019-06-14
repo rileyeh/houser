@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}  
+
+.header {
+    background: #519872;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    margin-left: 100px;
+    color: white;
+    background: #519872;
+
+}
